@@ -3,7 +3,7 @@ const orderApiUrl = window.location.protocol === 'file:'
   ? 'http://localhost:3000/api/orders'
   : '/api/orders';
 const summaryItems = document.querySelector('#summaryItems');
-const subtotal = storedCart.reduce((sum, item) => sum + Number(item.price), 0);
+const subtotal = storedCart.reduce((sum, item) => sum + Number(item.price) * (item.quantity || 1), 0);
 const summaryMarkup = storedCart.length
   ? storedCart.map((item) => `<div class="summary-product"><div><h3>${item.name}</h3><p>${item.quantity || 1} box${(item.quantity || 1) === 1 ? '' : 'es'} · Naturally grown</p></div><strong>₹${item.price * (item.quantity || 1)}</strong></div>`).join('')
   : '<p class="field-help">Your bag is empty. Please go back and choose a pack.</p>';
