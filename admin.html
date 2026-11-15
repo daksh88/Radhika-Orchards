@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin — Radhika Orchards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <section class="login-view">
+      <a class="brand" href="index.html"><span class="brand-mark">R</span><span><strong>Radhika</strong><small>ORCHARDS</small></span></a>
+      <div class="login-card">
+        <p class="eyebrow">Private workspace</p>
+        <h1>Welcome back.</h1>
+        <p class="muted">Sign in to manage your orchard orders.</p>
+        <form id="loginForm">
+          <label>Email address<input name="email" type="email" required autocomplete="email" placeholder="admin@example.com" /></label>
+          <label>Password<input name="password" type="password" required autocomplete="current-password" placeholder="Your password" /></label>
+          <button class="primary-button" type="submit">Sign in <span>↗</span></button>
+          <p class="form-error" id="loginError" role="alert"></p>
+        </form>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

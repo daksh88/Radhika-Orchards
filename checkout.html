@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout — Radhika Orchards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="checkout.css" />
+  </head>
+  <body class="checkout-page">
+    <header class="site-header checkout-header">
+      <a class="brand" href="index.html#home"><span class="brand-mark">R</span><span><strong>Radhika</strong><small>ORCHARDS</small></span></a>
+      <a class="back-link" href="index.html#shop">← Continue shopping</a>
+    </header>
+    <main class="checkout-main">
+      <div class="checkout-intro"><p class="eyebrow">Almost there</p><h1>Bring the <em>orchard</em><br />home.</h1><p>Tell us where to send your fresh, handpicked kiwis.</p></div>
+      <div id="confirmation" class="confirmation-modal" hidden role="dialog" aria-modal="true" aria-labelledby="confirmationTitle"><div class="confirmation"><button class="confirmation-close" id="closeConfirmation" aria-label="Close confirmation">×</button><span>✓</span><h2 id="confirmationTitle">Order confirmed!</h2><p>Thank you for choosing Radhika Orchards. We’ll call you shortly to confirm your delivery.</p><strong id="orderNumber"></strong><a class="primary-button" href="index.html">Back to home <span>↗</span></a></div></div>
+      <form class="checkout-layout" id="checkoutForm">
+        <section class="form-panel">
+          <div class="form-section"><h2>1. Your details</h2><div class="field-grid"><label>Full name<input name="name" required autocomplete="name" placeholder="Aarav Sharma" /></label><label>Phone number<input name="phone" required type="tel" autocomplete="tel" placeholder="+91 98765 43210" /></label></div><label>Email address <span class="optional">(optional)</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com" /></label></div>
+          <div class="form-section"><h2>2. Delivery address</h2><label>House / flat / street<input name="address" required autocomplete="street-address" placeholder="House no., street, locality" /></label><div class="field-grid"><label>City<input name="city" required autocomplete="address-level2" placeholder="Dehradun" /></label><label>PIN code<input name="pincode" required pattern="[0-9]{6}" inputmode="numeric" placeholder="248001" /></label></div><div class="map-tools"><button type="button" class="location-button" id="locationButton">◎ Use my current location</button></div><input name="mapsLink" id="mapsLink" type="hidden" /></div>
+          <div class="form-section"><h2>3. Payment</h2><div class="payment-option"><span class="radio-dot"></span><div><strong>Cash on delivery</strong><small>Pay when your kiwis arrive fresh at your door.</small></div><span class="cod-badge">COD</span></div></div>
+          <button class="place-order" type="submit">Place order <span>↗</span></button><p class="secure-note">🔒 Your details are only used to deliver your order.</p>
+        </section>
+        <aside class="order-summary"><h2>Your harvest</h2><div id="summaryItems"></div><div class="summary-line"><span>Subtotal</span><strong id="summarySubtotal">₹0</strong></div><div class="summary-line"><span>Delivery</span><strong class="free-text">FREE</strong></div><div class="summary-total"><span>Total</span><strong id="summaryTotal">₹0</strong></div><div class="summary-note">✦ Freshly packed in the hills<br />✦ Delivered with care, always free</div></aside>
+      </form>
+    </main>
+    <script src="checkout.js"></script>
+  </body>
+</html>

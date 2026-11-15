@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radhika Orchards — Grown with care.</title>
+    <meta
+      name="description"
+      content="Authentic organic kiwis, grown in the Uttarakhand hills and delivered fresh from Radhika Orchards."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="announcement">
+      <span>✦</span> Fresh from the Uttarakhand hills <span>✦</span> Free delivery, always
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Radhika Orchards home">
+        <span class="brand-mark">R</span>
+        <span><strong>Radhika</strong><small>ORCHARDS</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#shop">Shop kiwis</a>
+        <a href="#story">Our story</a>
+        <a href="#promise">Our promise</a>
+      </nav>
+      <button class="cart-button" id="cartButton" aria-label="Open shopping bag">
+        Bag <span id="cartCount">0</span><span class="arrow">↗</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="leaf-dot"></span> From our mountain orchard to your table</p>
+          <h1>Goodness that<br /><em>grows wild.</em></h1>
+          <p class="hero-text">
+            Sun-kissed, handpicked and naturally sweet. Meet the kiwi that carries the pure, crisp
+            taste of Uttarakhand in every bite.
+          </p>
+          <a class="primary-button" href="#shop">Shop the harvest <span>↗</span></a>
+          <div class="hero-note">
+            <div class="avatar-stack" aria-hidden="true">
+              <span>🌿</span><span>🥝</span><span>⛰</span>
+            </div>
+            <p><strong>100% mountain grown.</strong><br />Naturally grown with care.</p>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="sun-glow"></div>
+          <div class="hero-image-frame">
+            <img
+              src="https://images.unsplash.com/photo-1585059895524-72359e06133a?auto=format&fit=crop&w=1100&q=85"
+              alt="Fresh sliced kiwi on a natural surface"
+            />
+          </div>
+          <div class="stamp"><span>PURE</span><strong>PAHADI</strong><small>EST. 1998</small></div>
+          <div class="floating-fruit fruit-one">🥝</div>
+          <div class="floating-fruit fruit-two">🥝</div>
+          <p class="image-caption">The taste of<br /><em>homegrown hills.</em></p>
+        </div>
+      </section>
+
+      <section class="trust-strip" id="promise">
+        <div><span class="trust-icon">✿</span><strong>100% organic</strong><small>No chemicals. No shortcuts.</small></div>
+        <div><span class="trust-icon">⌁</span><strong>Tree to doorstep</strong><small>Picked fresh, packed with love.</small></div>
+        <div><span class="trust-icon">♡</span><strong>Good for you</strong><small>Vitamin-rich, naturally sweet.</small></div>
+      </section>
+
+      <section class="shop-section" id="shop">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">The harvest edit</p>
+            <h2>Choose your <em>green.</em></h2>
+          </div>
+          <p class="section-intro">Every box is a little piece of our orchard. Pick the size that feels right for your home.</p>
+        </div>
+        <div class="product-grid">
+          <article class="product-card featured-card">
+            <span class="best-seller">Most loved</span>
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1618897996318-5a901fa6ca71?auto=format&fit=crop&w=700&q=85" alt="Four fresh kiwis" /></div>
+            <div class="product-info">
+              <div><span class="product-kicker">The family box</span><span class="weight">2 kg total</span></div>
+              <h3>The Orchard Box</h3><p>40–48 handpicked kiwis · perfect for sharing</p>
+              <div class="product-bottom"><strong>₹550</strong><button class="add-button" data-product="The Orchard Box" data-price="550">Add to bag <span>+</span></button></div>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-image pale-image"><img src="https://images.unsplash.com/photo-1585059895524-72359e06133a?auto=format&fit=crop&w=700&q=85" alt="Kiwi fruit halves" /></div>
+            <div class="product-info">
+              <div><span class="product-kicker">The happy medium</span><span class="weight">1 kg total</span></div>
+              <h3>The Mountain Pack</h3><p>20–24 handpicked kiwis · your weekly vitamin boost</p>
+              <div class="product-bottom"><strong>₹310</strong><button class="add-button" data-product="The Mountain Pack" data-price="310">Add to bag <span>+</span></button></div>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-image dark-image"><img src="https://images.unsplash.com/photo-1519096845289-95806ee03a1a?auto=format&fit=crop&w=700&q=85" alt="Single kiwi fruit" /></div>
+            <div class="product-info">
+              <div><span class="product-kicker">The little ritual</span><span class="weight">500 g total</span></div>
+              <h3>The Taster Pack</h3><p>10–12 handpicked kiwis · a fresh start to your day</p>
+              <div class="product-bottom"><strong>₹170</strong><button class="add-button" data-product="The Taster Pack" data-price="170">Add to bag <span>+</span></button></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="story-section" id="story">
+        <div class="story-image"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1100&q=85" alt="Mountain landscape in the Uttarakhand hills" /></div>
+        <div class="story-copy">
+          <p class="eyebrow">A note from our orchard</p>
+          <h2>Raised by the<br /><em>mountains.</em></h2>
+          <p>High above the clouds, where the air is clean and the days move slow, our family has been growing kiwis since 1998.</p>
+          <p>We let nature lead the way — no chemicals, no forced ripening. Just good soil, mountain sun and a whole lot of love.</p>
+          <a class="text-link" href="#promise">Discover our promise <span>↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer><a class="brand" href="#home"><span class="brand-mark">R</span><span><strong>Radhika</strong><small>ORCHARDS</small></span></a><p>Made with love in Uttarakhand, India <span>♥</span></p><p>© 2024 Radhika Orchards</p></footer>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="bag-toast" id="bagToast">
+      <div><strong><span id="toastCount">0</span> items in your bag</strong><small>Free delivery on every order</small></div>
+      <button id="toastBagButton">View bag <span>↗</span></button>
+    </div>
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping bag">
+      <div class="drawer-header"><h2>Your bag <span id="drawerCount">0 items</span></h2><button id="closeCart" aria-label="Close shopping bag">×</button></div>
+      <div class="cart-items" id="cartItems"><div class="empty-cart"><span>🥝</span><p>Your bag is waiting<br />for something fresh.</p></div></div>
+      <div class="drawer-footer"><div><span>Subtotal</span><strong id="cartTotal">₹0</strong></div><div class="free-delivery-row"><span>Delivery</span><strong>FREE</strong></div><button class="checkout-button">Checkout <span>↗</span></button><small>Free delivery · Taxes included</small></div>
+    </aside>
+    <script src="script.js"></script>
+  </body>
+</html>

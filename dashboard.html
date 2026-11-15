@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard — Radhika Orchards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <section class="dashboard">
+      <header class="admin-header">
+        <a class="brand" href="index.html"><span class="brand-mark">R</span><span><strong>Radhika</strong><small>ORCHARDS</small></span></a>
+        <div class="admin-user"><span id="adminEmail"></span><button id="signOut">Sign out</button></div>
+      </header>
+      <main class="dashboard-main">
+        <div class="dashboard-heading"><div><p class="eyebrow">Operations</p><h1>Good morning.</h1><p class="muted">Here is what is happening with your harvest today.</p></div><button class="refresh-button" id="refreshOrders">↻ Refresh</button></div>
+        <div class="stats-grid"><div class="stat-card"><span>New orders</span><strong id="newCount">0</strong><small>Awaiting confirmation</small></div><div class="stat-card"><span>Total orders</span><strong id="totalCount">0</strong><small>All time</small></div><div class="stat-card"><span>Today’s sales</span><strong id="salesTotal">₹0</strong><small>From placed orders</small></div></div>
+        <div class="orders-panel"><div class="panel-heading"><h2>Recent orders</h2><select id="statusFilter" aria-label="Filter orders"><option value="all">All orders</option><option value="new">New</option><option value="confirmed">Confirmed</option><option value="packed">Packed</option><option value="out_for_delivery">Out for delivery</option><option value="delivered">Delivered</option><option value="cancelled">Cancelled</option></select></div><p class="form-error" id="dashboardError" role="alert"></p><div class="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Delivery address</th><th>Total</th><th>Status</th><th></th></tr></thead><tbody id="ordersBody"></tbody></table><div class="empty-state" id="emptyState" hidden>No orders match this filter.</div></div></div>
+      </main>
+    </section>
+    <div class="detail-overlay" id="detailOverlay" hidden></div>
+    <aside class="order-detail" id="orderDetail" hidden><div class="detail-header"><div><p class="eyebrow">Order details</p><h2 id="detailOrderNumber"></h2></div><button id="closeDetail" aria-label="Close order details">×</button></div><div id="detailContent"></div></aside>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="dashboard.js"></script>
+  </body>
+</html>
