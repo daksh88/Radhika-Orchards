@@ -126,6 +126,22 @@
     <footer><a class="brand" href="#home"><span class="brand-mark">R</span><span><strong>Radhika</strong><small>ORCHARDS</small></span></a><p>Made with love in Uttarakhand, India <span>♥</span></p><p>© 2024 Radhika Orchards</p></footer>
 
     <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="product-modal" id="productModal" hidden role="dialog" aria-modal="true" aria-labelledby="modalProductName">
+      <div class="product-modal-card">
+        <button class="modal-close" id="closeProductModal" aria-label="Close product details">×</button>
+        <div class="modal-product-image"><img id="modalProductImage" src="" alt="" /></div>
+        <div class="modal-product-copy">
+          <p class="eyebrow">From the Radhika orchard</p>
+          <h2 id="modalProductName"></h2>
+          <p class="modal-price" id="modalProductPrice"></p>
+          <p id="modalProductDescription"></p>
+          <div class="authenticity-list">
+            <span>✓ 100% naturally grown</span><span>✓ Handpicked in Uttarakhand</span><span>✓ No artificial ripening</span><span>✓ Packed fresh for your home</span>
+          </div>
+          <div class="modal-actions"><button class="modal-add-button" id="modalAddButton">Add to bag <span>+</span></button><button class="modal-quantity" id="modalQuantity" hidden><span id="modalMinus">−</span><strong id="modalQuantityValue">1</strong><span id="modalPlus">+</span></button></div>
+        </div>
+      </div>
+    </div>
     <div class="bag-toast" id="bagToast">
       <div><strong><span id="toastCount">0</span> items in your bag</strong><small>Free delivery on every order</small></div>
       <button id="toastBagButton">View bag <span>↗</span></button>
