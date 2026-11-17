@@ -13,12 +13,14 @@ async function renderTrackedOrders() {
     const response = await fetch(`/api/order-status?ids=${encodeURIComponent(ids)}`);
     if (!response.ok) throw new Error('Status lookup failed');
     const latestOrders = await response.json();
-    const latestById = new Map(latestOrders.map((order) => [order.order_number, order]));
-    trackedOrders.forEach((order) => {
-      const latest = latestById.get(order.orderId);
+    const latestById = new Map(latestOrders.map((order) => [String(order.order_number).trim().toUpperCase(), order]));
+    const existingOrders = trackedOrders.filter((order) => latestById.has(String(order.orderId).trim().toUpperCase()));
+    existingOrders.forEach((order) => {
+      const latest = latestById.get(String(order.orderId).trim().toUpperCase());
       if (latest) order.status = latest.order_status;
     });
-    localStorage.setItem('radhikaTrackedOrders', JSON.stringify(trackedOrders));
+    localStorage.setItem('radhikaTrackedOrders', JSON.stringify(existingOrders));
+    trackedOrders.splice(0, trackedOrders.length, ...existingOrders);
   } catch (error) {
     console.error('Could not refresh order statuses', error);
   }
