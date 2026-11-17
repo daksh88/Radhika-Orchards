@@ -33,6 +33,25 @@ async function supabaseRequest(table, options = {}) {
 }
 
 const server = http.createServer((request, response) => {
+  if (request.method === 'GET' && request.url.startsWith('/api/order-status')) {
+    const requestUrl = new URL(request.url, 'http://localhost');
+    const orderNumbers = [...new Set((requestUrl.searchParams.get('ids') || '').split(',').map((orderNumber) => orderNumber.trim().toUpperCase()).filter((orderNumber) => /^RO-[A-F0-9]{6}$/.test(orderNumber)))].slice(0, 20);
+    if (!orderNumbers.length) {
+      send(response, 200, JSON.stringify([]));
+      return;
+    }
+    supabaseRequest('rpc/get_order_status', {
+      method: 'POST',
+      body: { p_order_numbers: orderNumbers }
+    }).then((orders) => {
+      send(response, 200, JSON.stringify(orders));
+    }).catch((error) => {
+      console.error('Order status lookup failed', error);
+      send(response, 502, JSON.stringify({ error: 'Order status could not be loaded' }));
+    });
+    return;
+  }
+
   if (request.method === 'POST' && request.url === '/api/orders') {
     let body = '';
     request.on('data', (chunk) => { body += chunk; });

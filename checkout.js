@@ -52,6 +52,9 @@ document.querySelector('#checkoutForm').addEventListener('submit', async (event)
     const response = await fetch(orderApiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(order) });
     if (!response.ok) throw new Error('Order could not be saved');
     const savedOrder = await response.json();
+    const trackedOrders = JSON.parse(localStorage.getItem('radhikaTrackedOrders') || '[]');
+    trackedOrders.unshift({ orderId: savedOrder.orderId, status: 'new', createdAt: new Date().toISOString() });
+    localStorage.setItem('radhikaTrackedOrders', JSON.stringify(trackedOrders.slice(0, 20)));
     localStorage.removeItem('radhikaCart');
     form.hidden = true;
     document.querySelector('#confirmation').hidden = false;
