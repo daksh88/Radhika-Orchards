@@ -34,6 +34,21 @@ to authenticated
 using (true)
 with check (true);
 
+drop policy if exists "Signed-in admins can delete orders" on public.orders;
+drop policy if exists "Signed-in admins can delete order items" on public.order_items;
+
+create policy "Signed-in admins can delete orders"
+on public.orders
+for delete
+to authenticated
+using (true);
+
+create policy "Signed-in admins can delete order items"
+on public.order_items
+for delete
+to authenticated
+using (true);
+
 create policy "Signed-in admins can view order items"
 on public.order_items
 for select

@@ -14,9 +14,10 @@ function escapeHtml(value = '') { return String(value).replace(/[&<>"']/g, (char
 function renderOrders() {
   const visible = statusFilter.value === 'all' ? orders : orders.filter((order) => order.order_status === statusFilter.value);
   emptyState.hidden = visible.length > 0;
-  ordersBody.innerHTML = visible.map((order) => `<tr><td><span class="order-id">${order.order_number}</span><br /><small>${new Date(order.created_at).toLocaleString('en-IN')}</small></td><td><div class="customer-name">${escapeHtml(order.customer_name)}</div><span>${escapeHtml(order.phone)}</span></td><td><div class="address">${escapeHtml(order.address)}, ${escapeHtml(order.city)} — ${escapeHtml(order.pincode)}</div></td><td><strong>${formatCurrency(order.total_amount)}</strong><br /><small>Free delivery</small></td><td><select class="status-select" data-status="${order.order_status}" data-order-id="${order.id}" aria-label="Status for ${order.order_number}">${['new','confirmed','packed','out_for_delivery','delivered','cancelled'].map((status) => `<option value="${status}" ${status === order.order_status ? 'selected' : ''}>${statusLabel(status)}</option>`).join('')}</select></td><td><button class="view-button" data-view-order="${order.id}">View →</button></td></tr>`).join('');
+  ordersBody.innerHTML = visible.map((order) => `<tr><td><span class="order-id">${order.order_number}</span><br /><small>${new Date(order.created_at).toLocaleString('en-IN')}</small></td><td><div class="customer-name">${escapeHtml(order.customer_name)}</div><span>${escapeHtml(order.phone)}</span></td><td><div class="address">${escapeHtml(order.address)}, ${escapeHtml(order.city)} — ${escapeHtml(order.pincode)}</div></td><td><strong>${formatCurrency(order.total_amount)}</strong><br /><small>Free delivery</small></td><td><select class="status-select" data-status="${order.order_status}" data-order-id="${order.id}" aria-label="Status for ${order.order_number}">${['new','confirmed','packed','out_for_delivery','delivered','cancelled'].map((status) => `<option value="${status}" ${status === order.order_status ? 'selected' : ''}>${statusLabel(status)}</option>`).join('')}</select></td><td><button class="view-button" data-view-order="${order.id}">View →</button><button class="delete-button" data-delete-order="${order.id}" data-order-number="${escapeHtml(order.order_number)}">Delete</button></td></tr>`).join('');
   document.querySelectorAll('.status-select').forEach((select) => select.addEventListener('change', updateStatus));
   document.querySelectorAll('[data-view-order]').forEach((button) => button.addEventListener('click', () => showDetails(Number(button.dataset.viewOrder))));
+  document.querySelectorAll('[data-delete-order]').forEach((button) => button.addEventListener('click', deleteOrder));
 }
 async function loadOrders() {
   dashboardError.textContent = '';
@@ -40,6 +41,27 @@ async function updateStatus(event) {
   const order = orders.find((item) => String(item.id) === orderId);
   if (order) order.order_status = nextStatus;
   renderOrders();
+}
+async function deleteOrder(event) {
+  const orderId = event.currentTarget.dataset.deleteOrder;
+  const orderNumber = event.currentTarget.dataset.orderNumber;
+  if (!window.confirm(`Delete order ${orderNumber}? This cannot be undone.`)) return;
+  dashboardError.textContent = '';
+  const { error: itemsError } = await client.from('order_items').delete().eq('order_id', orderId);
+  if (itemsError) {
+    dashboardError.textContent = 'Could not delete the order items. The order was not deleted.';
+    return;
+  }
+  const { error: orderError } = await client.from('orders').delete().eq('id', orderId);
+  if (orderError) {
+    dashboardError.textContent = 'Could not delete the order.';
+    return;
+  }
+  orders = orders.filter((order) => String(order.id) !== String(orderId));
+  orderItems = orderItems.filter((item) => String(item.order_id) !== String(orderId));
+  renderOrders();
+  document.querySelector('#newCount').textContent = orders.filter((order) => order.order_status === 'new').length;
+  document.querySelector('#totalCount').textContent = orders.length;
 }
 function showDetails(orderId) {
   const order = orders.find((item) => item.id === orderId);
